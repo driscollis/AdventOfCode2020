@@ -1,14 +1,12 @@
+
 def detect_trees(data: list, right: int = 3, down: int = 1) -> int:
     pos = 0
     trees = 0
     first_row = True
     for line in data[::down]:
-        if pos > len(line):
-            line = line * 100
+        line = line * 100
 
-        if pos == 0:
-            char = line[pos]
-        else:
+        if pos != 0:
             char = line[:pos][-1]
 
         if first_row:
