@@ -49,7 +49,7 @@ def process2(lines: str) -> bool:
         return False
     if dd['eyr'] < "2020" or dd['eyr'] > "2030":
         return False
-    if not any([dd['hgt'].find('in'), dd['hgt'].find('cm')]):
+    if not any(['in' in dd['hgt'], 'cm' in dd['hgt']]):
         return False
     if 'cm' in dd['hgt']:
         height = int(dd['hgt'][:-2])
@@ -64,6 +64,7 @@ def process2(lines: str) -> bool:
     hcl = dd['hcl'].split('#')[-1]
     if len(hcl) != 6:
         return False
+
     try:
         int(hcl, 16)
     except ValueError:
@@ -73,6 +74,9 @@ def process2(lines: str) -> bool:
         return False
     if len(dd['pid']) != 9:
         return False
+
+    if dd['pid'] == '182693366':
+        print()
     return True
 
 
@@ -80,10 +84,13 @@ def count_passports(data: str) -> int:
     pport = {}
     s = ''
     count = 0
+    passports = []
     for line in data.split('\n'):
-        if line.strip() == '':
+        line = line.strip()
+        if line == '':
             # process
             count += bool(process2(s))
+            passports.append(s)
             s = ''
         s += ' ' + line
     print(f"Valid passports: {count}")
