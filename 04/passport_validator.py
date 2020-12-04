@@ -12,7 +12,10 @@ hgt:179cm
 hcl:#cfa07d eyr:2025 pid:166559648
 iyr:2011 ecl:brn hgt:59in"""
 
-def process(lines):
+def process(lines: str) -> bool:
+    """
+    Part 1
+    """
     d = lines.split(' ')
     dd = dict([item.split(':') for item in d if item])
     keys = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
@@ -22,20 +25,10 @@ def process(lines):
     return True
 
 
-
-    #byr (Birth Year) - four digits; at least 1920 and at most 2002.
-    #iyr (Issue Year) - four digits; at least 2010 and at most 2020.
-    #eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
-    #hgt (Height) - a number followed by either cm or in:
-        #If cm, the number must be at least 150 and at most 193.
-        #If in, the number must be at least 59 and at most 76.
-    #hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
-    #ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
-    #pid (Passport ID) - a nine-digit number, including leading zeroes.
-    #cid (Country ID) - ignored, missing or not.
-
-
-def process2(lines):
+def process2(lines: str) -> bool:
+    """
+    Part 2
+    """
     d = lines.split(' ')
     dd = dict([item.split(':') for item in d if item])
 
@@ -83,7 +76,7 @@ def process2(lines):
     return True
 
 
-def count_passports(data: str):
+def count_passports(data: str) -> int:
     pport = {}
     s = ''
     count = 0
