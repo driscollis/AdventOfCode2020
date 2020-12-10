@@ -14,7 +14,7 @@ def verify_password(line: str, version: int = 1) -> bool:
             return True
     return False
 
-def count_good_passwords(data: str, version: int = 1) -> int:
+def count_good_passwords(data: list, version: int = 1) -> int:
     good_passwords = 0
     for line in data:
         if verify_password(line, version):
